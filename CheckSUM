@@ -1,0 +1,51 @@
+Number_of_messages=int(input())
+Bits_of_Message=int(input())
+arr = []
+for i in range(Number_of_messages):
+    Message = input()
+    arr.append(Message)
+add=int(arr[0],2)
+for i in range(1,Number_of_messages):
+    add += int(arr[i],2)                  
+    result = "{0:00b}".format(add)                            
+    length_of_result=len(result)                                
+    if(length_of_result>Bits_of_Message):
+        if (result[length_of_result-1]=="1"):
+            add+=1
+        f_result="{0:00b}".format(add)
+        final_result=f_result[1:]
+    else:
+        f_result="{0:00b}".format(add)
+        final_result=f_result
+    add=int(final_result)
+    
+print("SENDER")
+    
+print("sum = "+final_result)
+    
+
+b=list(final_result)
+    
+checksum=""
+for i in range(len(final_result)):
+    if b[i] =='1':
+        checksum+="0"
+    else:
+        checksum+="1"
+print("checksum = "+checksum)
+
+
+print("RECIEVER")
+
+s=list(final_result)
+cs=list(checksum)
+
+flag=0
+for i in range(Bits_of_Message):
+    if(s[i]==cs[i]):
+        flag+=1
+
+if(flag==0):
+    print("received successfully")
+else:
+    print("ERROR")
