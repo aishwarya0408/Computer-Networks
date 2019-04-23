@@ -1,0 +1,11 @@
+def getParity( n ): 
+    parity = 0
+    while n: 
+        parity = ~parity 
+        n = n & (n - 1) 
+    if(parity%2==0):
+        print("EVEN")
+    else:
+        print("ODD")
+n=int(input())
+getParity(n)
